@@ -1,14 +1,10 @@
-# Use an official OpenJDK runtime as the base image
-FROM openjdk:17
+FROM eclipse-temurin:11-jre
 
-# Set the working directory to /app
 WORKDIR /app
 
-# Copy the Spring Boot application JAR file into the container
-COPY ./target/springboottest-0.0.1-SNAPSHOT.jar springboottest-0.0.1-SNAPSHOT.jar
+# Copy Spring Boot jar
+COPY target/*.jar app.jar
 
-# Expose port 8080 for the application
-EXPOSE 8080
+EXPOSE 8084
 
-# Define the command to run the Spring Boot application
-CMD ["java", "-jar", "springboottest-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","/app/app.jar"]
